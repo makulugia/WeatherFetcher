@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Text;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using WeatherFetcher;
@@ -63,6 +64,9 @@ namespace WeatherFetcher
                         weatherFinal.list.Add(weatherRecord);
                     }
 
+                    //await _weatherDataRepository.SaveWeatherData(weatherFinal); // Save the weather data to the repository
+                    await SaveWeatherDataToFile(weatherFinal); // Save the weather data to a text file
+
                     return weatherFinal;
                 }
                 else
@@ -100,5 +104,36 @@ namespace WeatherFetcher
                 return null;
             }
         }
+        private async Task SaveWeatherDataToFile(WeatherRecordList weatherData)
+        {
+            string filePath = "weatherData.txt";
+            StringBuilder csvData = new StringBuilder();
+
+            if (File.Exists(filePath))
+            {
+                // Read the existing data from the file
+                string existingData = await File.ReadAllTextAsync(filePath);
+                csvData.AppendLine(existingData);
+            }
+
+            // Filter out the weather records with dt values that are already present in the file
+            var newWeatherData = weatherData.list.Where(record =>
+                !csvData.ToString().Contains(record.dt.ToString())
+            );
+
+            int anyNew = 0;
+
+            foreach (var weatherRecord in newWeatherData)
+            {
+                string csvLine = $"{weatherRecord.dt_txt},{weatherRecord.dt},{weatherRecord.temp}";
+                csvData.AppendLine(csvLine);
+                anyNew += 1;
+            }
+
+            Console.WriteLine($"{anyNew} new entrie(s) added!");
+
+            await File.WriteAllTextAsync(filePath, csvData.ToString());
+        }
+
     }
 }

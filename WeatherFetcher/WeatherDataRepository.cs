@@ -13,9 +13,9 @@ namespace WeatherFetcher
             _context = context;
         }
 
-        public async Task SaveWeatherData(WeatherData weatherData)
+        public async Task SaveWeatherData(WeatherRecordList weatherFinal)
         {
-            await _context.WeatherData.AddAsync(weatherData);
+            await _context.WeatherRecordList.AddAsync(weatherFinal);
             await _context.SaveChangesAsync();
         }
     }

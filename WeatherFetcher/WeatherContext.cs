@@ -10,6 +10,6 @@ namespace WeatherFetcher
         {
         }
 
-        public DbSet<WeatherData> WeatherData { get; set; }
+        public DbSet<WeatherRecordList> WeatherRecordList { get; set; }
     }
 }

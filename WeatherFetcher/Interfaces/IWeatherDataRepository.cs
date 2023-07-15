@@ -2,6 +2,6 @@
 {
     public interface IWeatherDataRepository
     {
-        Task SaveWeatherData(WeatherData weatherData);
+        Task SaveWeatherData(WeatherRecordList weatherFinal);
     }
 }
