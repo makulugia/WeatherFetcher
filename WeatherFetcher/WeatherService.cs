@@ -43,17 +43,20 @@ namespace WeatherFetcher
                     foreach (var entry in result.list)
                     {
                         string dtTxt = entry.dt_txt;
+                        long dt = entry.dt;
                         float temp = entry.main.temp;
 
                         var weatherEntry = new WeatherEntry
                         {
                             dt_txt = dtTxt,
+                            dt = dt,
                             main = new Main { temp = temp }
                         };
 
                         var weatherRecord = new WeatherRecord
                         {
                             dt_txt = dtTxt,
+                            dt = dt,
                             temp = temp
                         };
 
