@@ -25,22 +25,6 @@ namespace WeatherFetcher
         {
             try
             {
-                //var apiKey = Environment.GetEnvironmentVariable("WeatherAPIKey");
-                //if (string.IsNullOrEmpty(apiKey))
-                //{
-                //    // Handle missing API key
-                //    return null;
-                //}
-
-                //if (string.IsNullOrEmpty(apiKey))
-                //{
-                //    Console.WriteLine("WeatherAPIKey is not set.");
-                //}
-                //else
-                //{
-                //    Console.WriteLine("WeatherAPIKey is set: " + apiKey);
-                //}
-
                 var apiKey = _configuration["WeatherAPIKey"]; // Retrieve the API key from configuration
                 var url = $"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={apiKey}";
 
