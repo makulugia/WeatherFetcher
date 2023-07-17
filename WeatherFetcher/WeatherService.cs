@@ -46,6 +46,8 @@ namespace WeatherFetcher
                         string dtTxt = entry.dt_txt;
                         long dt = entry.dt;
                         float temp = entry.main.temp;
+                        float temp_min = entry.main.temp_min;
+                        float temp_max = entry.main.temp_max;
 
                         var weatherEntry = new WeatherEntry
                         {
@@ -58,7 +60,9 @@ namespace WeatherFetcher
                         {
                             dt_txt = dtTxt,
                             dt = dt,
-                            temp = temp
+                            temp = temp,
+                            temp_min = temp_min,
+                            temp_max = temp_max
                         };
 
                         weatherFinal.list.Add(weatherRecord);
@@ -125,7 +129,7 @@ namespace WeatherFetcher
 
             foreach (var weatherRecord in newWeatherData)
             {
-                string csvLine = $"{weatherRecord.dt_txt},{weatherRecord.dt},{weatherRecord.temp}";
+                string csvLine = $"{weatherRecord.dt_txt},{weatherRecord.dt},{weatherRecord.temp},{weatherRecord.temp_min},{weatherRecord.temp_max}";
                 csvData.AppendLine(csvLine);
                 anyNew += 1;
             }

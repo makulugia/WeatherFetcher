@@ -13,6 +13,8 @@ public class WeatherEntry
 public class Main
 {
     public float temp { get; set; }
+    public float temp_min { get; set; }
+    public float temp_max { get; set; }
 }
 
 public class WeatherRecord
@@ -20,6 +22,8 @@ public class WeatherRecord
     public string dt_txt { get; set; }
     public long dt { get; set; }
     public float temp { get; set; }
+    public float temp_min { get; set; }
+    public float temp_max { get; set; }
 }
 
 public class WeatherRecordList
